@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 NAME = a.out
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
