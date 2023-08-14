@@ -6,7 +6,7 @@
 /*   By: mkhairou <mkhairou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 11:55:26 by mkhairou          #+#    #+#             */
-/*   Updated: 2023/08/14 20:11:56 by mkhairou         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:34:15 by mkhairou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ template <class T> class Array
 {
 private:
 	T* array;
-	unsigned int _size;
+	int _size;
 public:
 	Array() : array(NULL)
 	{
@@ -40,30 +40,26 @@ public:
 
 	Array(const Array& copy)
 	{
-		array = new T[copy.size()];
-        _size = copy.size();
-        for (unsigned int i = 0; i < copy.size(); i++)
-        {
-            array[i] = copy.array[i];
-        }
+		this->array = NULL;
+		*this = copy;
 	}
-	Array operator=(const Array& copy)
-{
-    if(this != &copy)
-    {
-        if (array)
-            delete[] array;
-        array = new T[copy.size()];
-        _size = copy.size();
-        for (unsigned int i = 0; i < copy.size(); i++)
-        {
-            array[i] = copy.array[i];
-        }
-    }
-    return(*this);
-}
+	Array& operator=(const Array& copy)
+	{
+		if(this != &copy)
+		{
+			if (array)
+				delete[] array;
+			array = new T[copy.size()];
+			_size = copy.size();
+			for (int i = 0; i < copy.size(); i++)
+			{
+				array[i] = copy.array[i];
+			}
+		}
+		return(*this);
+	}
 
-	unsigned int size() const
+	int size() const
 	{
 		return (_size);
 	}
